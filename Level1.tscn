@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6dh2avmpx8q3"]
+
+[ext_resource type="Script" path="res://CharacterBallController.gd" id="1_h7rin"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_3ugfp"]
+energy_multiplier = 9.6
+
+[sub_resource type="Sky" id="Sky_y620c"]
+sky_material = SubResource("PhysicalSkyMaterial_3ugfp")
+
+[sub_resource type="Environment" id="Environment_ust7r"]
+background_mode = 2
+sky = SubResource("Sky_y620c")
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_he88h"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_43c2d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yd4pj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mpp03"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ust7r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.738926, 0.673787, 0, -0.673787, 0.738926, -0.383956, 1.57194, 2.75631)
+
+[node name="CharacterBall" type="RigidBody3D" parent="."]
+script = ExtResource("1_h7rin")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBall"]
+shape = SubResource("SphereShape3D_he88h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBall/CollisionShape3D"]
+mesh = SubResource("SphereMesh_43c2d")
+skeleton = NodePath("../..")
+
+[node name="BallCam" type="Camera3D" parent="CharacterBall/CollisionShape3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.830984, 0.556296, 0, -0.556296, 0.830984, 0, 2.384, 3.559)
+
+[node name="WorldGeography" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldGeography"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldGeography/StaticBody3D"]
+transform = Transform3D(12.435, 0, 0, 0, 12.435, 0, 0, 0, 12.435, 0, -7, 0)
+shape = SubResource("BoxShape3D_yd4pj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldGeography/StaticBody3D"]
+transform = Transform3D(12.435, 0, 0, 0, 12.435, 0, 0, 0, 12.435, 0, -7, 0)
+mesh = SubResource("BoxMesh_mpp03")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="WorldGeography"]
+transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 9.72839, 1.68068, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldGeography/StaticBody3D2"]
+transform = Transform3D(12.435, 0, 0, 0, 12.435, 0, 0, 0, 12.435, 0, -7, 0)
+shape = SubResource("BoxShape3D_yd4pj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldGeography/StaticBody3D2"]
+transform = Transform3D(12.435, 0, 0, 0, 12.435, 0, 0, 0, 12.435, 0, -7, 0)
+mesh = SubResource("BoxMesh_mpp03")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="WorldGeography"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6533, -0.0561128, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldGeography/StaticBody3D3"]
+transform = Transform3D(12.435, 0, 0, 0, 12.435, 0, 0, 0, 12.435, 0, -7, 0)
+shape = SubResource("BoxShape3D_yd4pj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldGeography/StaticBody3D3"]
+transform = Transform3D(12.435, 0, 0, 0, 12.435, 0, 0, 0, 12.435, 0, -7, 0)
+mesh = SubResource("BoxMesh_mpp03")
+skeleton = NodePath("../..")
